@@ -1,4 +1,4 @@
-import cypress from 'cypress';
+import cypress = require('cypress');
 import { Applications } from './Applications';
 
 async function open() {

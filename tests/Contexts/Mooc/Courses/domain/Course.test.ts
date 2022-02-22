@@ -1,13 +1,11 @@
 import { CreateCourseCommandMother } from '../application/CreateCourseCommandMother';
 import { CourseMother } from './CourseMother';
-import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CourseIdMother } from '../../Shared/domain/Courses/CourseIdMother';
 import { CourseNameMother } from './CourseNameMother';
 import { CourseDurationMother } from './CourseDurationMother';
 
-describe('Course', () => {
-
-  it('should return a new course instance', () => {
+describe('User', () => {
+  it('should return a new user instance', () => {
     const command = CreateCourseCommandMother.random();
 
     const course = CourseMother.fromCommand(command);

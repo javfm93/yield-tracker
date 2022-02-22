@@ -1,5 +1,5 @@
 import { BackofficeCourseId } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseId';
-import { UuidMother } from '../../../Shared/domain/UuidMother';
+import { UuidGenerator } from '../../../Shared/domain/UuidGenerator';
 
 export class BackofficeCourseIdMother {
   static create(value: string): BackofficeCourseId {
@@ -11,6 +11,6 @@ export class BackofficeCourseIdMother {
   }
 
   static random(): BackofficeCourseId {
-    return this.create(UuidMother.random());
+    return this.create(UuidGenerator.random());
   }
 }

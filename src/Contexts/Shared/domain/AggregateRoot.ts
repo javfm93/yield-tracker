@@ -1,9 +1,12 @@
 import { DomainEvent } from './DomainEvent';
+import { Entity } from './Entity';
+import { Uuid } from './value-object/Uuid';
 
-export abstract class AggregateRoot {
+export abstract class AggregateRoot<T> extends Entity<T> {
   private domainEvents: Array<DomainEvent>;
 
-  constructor() {
+  protected constructor(id: Uuid, props: T) {
+    super(id, props);
     this.domainEvents = [];
   }
 

@@ -1,31 +1,23 @@
-export abstract class ValueObject<T extends Object> {
-  private _value: T;
+import { shallowEqual } from 'shallow-equal-object';
 
-  constructor(value: T) {
-    this._value = value;
+interface ValueObjectProps {
+  [index: string]: any;
+}
+
+export abstract class ValueObject<T extends ValueObjectProps> {
+  public readonly props: T;
+
+  protected constructor(props: T) {
+    this.props = Object.freeze(props);
   }
 
-  public value(): T {
-    return this._value;
-  }
-
-  public equals(o: ValueObject<T>): boolean {
-    return this.value() === o.value();
-  }
-
-  toJSON() {
-    return this.toString();
-  }
-
-  toString() {
-    if (this._value) {
-      return this._value.toString();
+  public isEqualTo(valueObject?: ValueObject<T>): boolean {
+    if (valueObject === null || valueObject === undefined) {
+      return false;
     }
-
-    return this._value;
-  }
-
-  valueOf() {
-    return this._value;
+    if (valueObject.props === undefined) {
+      return false;
+    }
+    return shallowEqual(this.props, valueObject.props);
   }
 }

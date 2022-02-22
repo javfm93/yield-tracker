@@ -1,0 +1,128 @@
+{
+  "employees": [
+    {
+      "id": "1-peter",
+      "name": "Peter",
+      "job": {
+        "id": 1,
+        "name": "junior",
+        "range": {
+          "min": 18,
+          "max": 25
+        }
+      },
+      "salary": 18,
+      "bossId": 3,
+      "comments": [
+        {
+          "id": "1-comment-peter",
+          "content": "wow",
+          "job": {
+            "id": 1,
+            "name": "junior",
+            "range": {
+              "min": 18,
+              "max": 25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2-maria",
+      "name": "Maria",
+      "job": {
+        "id": 1,
+        "name": "junior",
+        "range": {
+          "min": 18,
+          "max": 25
+        }
+      },
+      "salary": 23,
+      "bossId": 3,
+      "comments": [
+        {
+          "id": "2-comment-maria",
+          "content": "beautiful",
+          "job": {
+            "id": 1,
+            "name": "junior",
+            "range": {
+              "min": 18,
+              "max": 25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3-james",
+      "name": "James",
+      "job": {
+        "id": 2,
+        "name": "senior",
+        "range": {
+          "min": 30,
+          "max": 50
+        }
+      },
+      "salary": 40,
+      "bossId": 4,
+      "comments": [
+        {
+          "id": "3-comment-james",
+          "content": "the past",
+          "job": {
+            "id": 1,
+            "name": "junior",
+            "range": {
+              "min": 18,
+              "max": 25
+            }
+          }
+        },
+        {
+          "id": "4-comment-james",
+          "content": "the new reality",
+          "job": {
+            "id": 2,
+            "name": "senior",
+            "range": {
+              "min": 30,
+              "max": 50
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4-petra",
+      "name": "Petra",
+      "job": {
+        "id": 3,
+        "name": "manager",
+        "range": {
+          "min": 80,
+          "max": 150
+        }
+      },
+      "salary": 130,
+      "bossId": null,
+      "comments": [
+        {
+          "id": "5-comment-petra",
+          "content": "im the boss",
+          "job": {
+            "id": 3,
+            "name": "manager",
+            "range": {
+              "min": 80,
+              "max": 150
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

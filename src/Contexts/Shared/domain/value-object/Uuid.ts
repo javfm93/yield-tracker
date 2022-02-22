@@ -6,8 +6,9 @@ export class Uuid {
   readonly value: string;
 
   constructor(value: string) {
-    this.ensureIsValidUuid(value);
-
+    if (!validate(value)) {
+      throw new InvalidArgumentError(`<${this.constructor.name}> does not allow the value <${value}>`);
+    }
     this.value = value;
   }
 
@@ -15,10 +16,8 @@ export class Uuid {
     return new Uuid(v4());
   }
 
-  private ensureIsValidUuid(id: string): void {
-    if (!validate(id)) {
-      throw new InvalidArgumentError(`<${this.constructor.name}> does not allow the value <${id}>`);
-    }
+  isEqualTo(uuid: Uuid) {
+    return this.value === uuid.value;
   }
 
   toString(): string {

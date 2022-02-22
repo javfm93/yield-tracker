@@ -6,7 +6,7 @@ import { EmailSenderMock } from '../../__mocks__/EmailSenderMock';
 import SendWelcomeUserEmail from '../../../../../../src/Contexts/Mooc/Notifications/application/SendWelcomeUserEmail/SendWelcomeUserEmail';
 import SendWelcomeUserEmailOnUserRegistered from '../../../../../../src/Contexts/Mooc/Notifications/application/SendWelcomeUserEmail/SendWelcomeUserEmailOnUserRegistered';
 import { UserRegisteredDomainEvent } from '../../../../../../src/Contexts/Mooc/Notifications/domain/UserRegisteredDomainEvent';
-import { UuidMother } from '../../../../../Contexts/Shared/domain/UuidMother';
+import { UuidGenerator } from '../../../../Shared/domain/UuidGenerator';
 import { WelcomeUserEmail } from '../../../../../../src/Contexts/Mooc/Notifications/domain/WelcomeUserEmail';
 import { WelcomeUserEmailError } from '../../../../../../src/Contexts/Mooc/Notifications/domain/WelcomeUserEmailError';
 
@@ -50,7 +50,7 @@ function anEmailAddress(): EmailAddress {
 
 function aDomainEventWithEmailAddress(emailAddress: EmailAddress) {
   return new UserRegisteredDomainEvent({
-    id: UuidMother.random(),
+    id: UuidGenerator.random(),
     userEmailAddress: emailAddress.value
   });
 }

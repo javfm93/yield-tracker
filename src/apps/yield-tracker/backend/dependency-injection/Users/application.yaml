@@ -1,0 +1,15 @@
+services:
+
+  YieldTracker.users.UserRepository:
+    class: ../../../../../Contexts/Yield-Tracker/Users/infrastructure/persistence/MongoUserRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  YieldTracker.users.CreateUser:
+    class: ../../../../../Contexts/Yield-Tracker/Users/application/Create/CreateUser
+    arguments: ['@YieldTracker.users.UserRepository', '@Shared.EventBus']
+
+  YieldTracker.users.CreateUserCommandHandler:
+    class: ../../../../../Contexts/Yield-Tracker/Users/application/Create/CreateUserCommandHandler
+    arguments: ['@YieldTracker.users.CreateUser']
+    tags:
+      - { name: 'commandHandler' }

@@ -1,0 +1,14 @@
+services:
+
+  Apps.YieldTracker.Backend.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    arguments: []
+
+  Apps.YieldTracker.Backend.controllers.UserGetController:
+    class: ../../controllers/UserGetController
+    arguments: ['@Shared.QueryBus']
+
+  Apps.YieldTracker.Backend.controllers.UserPutController:
+    class: ../../controllers/UserPutController
+    arguments: ['@Shared.CommandBus']
+
