@@ -2,6 +2,8 @@ import assert from 'assert';
 import { AfterAll, BeforeAll, Given, Then } from 'cucumber';
 import request from 'supertest';
 import { YieldTrackerBackendApp } from '../../../../../../src/apps/yield-tracker/backend/YieldTrackerBackendApp';
+import { EnvironmentArranger } from '../../../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
+import container from '../../../../../../src/apps/yield-tracker/backend/dependency-injection';
 
 let _request: request.Test;
 let _response: request.Response;
@@ -27,17 +29,16 @@ Then('the response content should be:', response => {
   assert.deepEqual(_response.body, JSON.parse(response));
 });
 
-// todo: arrangers
 BeforeAll(async () => {
-  // const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
-  // await (await environmentArranger).arrange();
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('YieldTracker.EnvironmentArranger');
+  await (await environmentArranger).arrange();
   application = new YieldTrackerBackendApp();
   await application.start();
 });
 
 AfterAll(async () => {
-  // const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
-  // await (await environmentArranger).arrange();
-  // await (await environmentArranger).close();
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('YieldTracker.EnvironmentArranger');
+  await (await environmentArranger).arrange();
+  await (await environmentArranger).close();
   await application.stop();
 });
