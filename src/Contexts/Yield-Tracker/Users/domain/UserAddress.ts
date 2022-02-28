@@ -1,4 +1,4 @@
-import { Address } from '../../../Shared/domain/address';
+import { Address } from '../../../Shared/domain/Address';
 
 export class UserAddress extends Address {
   private constructor(value: string) {

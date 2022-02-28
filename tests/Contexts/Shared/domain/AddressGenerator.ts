@@ -1,5 +1,5 @@
 import * as faker from 'faker';
-import { Address } from '../../../../src/Contexts/Shared/domain/address';
+import { Address } from '../../../../src/Contexts/Shared/domain/Address';
 
 export class AddressGenerator {
   static random(): Address {

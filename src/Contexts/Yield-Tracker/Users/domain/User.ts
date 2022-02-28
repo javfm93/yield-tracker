@@ -1,18 +1,20 @@
-import { Address } from '../../../Shared/domain/address';
+import { Address } from '../../../Shared/domain/Address';
 import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
 import { UserCreatedDomainEvent } from './UserCreatedDomainEvent';
 import { Transaction } from '../../Others/domain/transaction';
 import { UserAddress } from './UserAddress';
 import { UserId } from './UserId';
+import { UserTransactions } from './UserTransactions';
 
 export interface UserProps {
   address: UserAddress;
-  transactions: Array<Transaction>;
+  transactions: UserTransactions;
 }
 
 interface UserPrimitives {
   id: string;
   address: string;
+  transactions: UserTransactions;
 }
 
 export class User extends AggregateRoot<UserProps> {
@@ -34,18 +36,23 @@ export class User extends AggregateRoot<UserProps> {
   toPrimitives(): UserPrimitives {
     return {
       id: this.id.toString(),
-      address: this.props.address.toString()
+      address: this.props.address.toString(),
+      transactions: this.props.transactions
     };
   }
 
   static fromPrimitives(plainData: UserPrimitives): User {
-    return new User(UserId.create(plainData.id), { address: UserAddress.create(plainData.address), transactions: [] });
+    return new User(UserId.create(plainData.id), {
+      address: UserAddress.create(plainData.address),
+      transactions: plainData.transactions
+    });
   }
 
   transactionsWith(smartContractAddresses: Array<Address>): Array<Transaction> {
     const transactions = smartContractAddresses.map(smartContractAddress =>
-      this.props.transactions.filter(
-        tokenTx => tokenTx.isDepositOf(smartContractAddress) || tokenTx.isWithdrawOf(smartContractAddress)
+      this.props.transactions.filterBy(
+        tokenTx =>
+          tokenTx.isDepositOf(smartContractAddress) || tokenTx.isWithdrawOf(smartContractAddress)
       )
     );
     // return transactions.flat();

@@ -7,7 +7,7 @@ export type TokensPrice = {
 
 export interface Gateway {
   transactionsOf(address: string): Promise<Array<Transaction>>;
+  getInputOf(transaction: Transaction): Promise<string>;
   getTokenPriceAt(token: Token, timestamp: string): Promise<string>;
   getCurrentTokensPrice(): Promise<TokensPrice>;
-  getInputOf(transaction: Transaction): Promise<string>;
 }

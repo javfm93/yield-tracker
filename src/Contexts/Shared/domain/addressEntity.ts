@@ -1,4 +1,4 @@
-import { Address } from './address';
+import { Address } from './Address';
 
 const isEntity = (v: any): v is AddressEntity<any> => v instanceof AddressEntity;
 
@@ -6,8 +6,8 @@ export abstract class AddressEntity<T> {
   readonly address: Address;
   public readonly props: T;
 
-  constructor(address: string, props: T) {
-    this.address = Address.create(address);
+  protected constructor(address: Address, props: T) {
+    this.address = address;
     this.props = props;
   }
 

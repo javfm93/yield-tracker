@@ -3,7 +3,7 @@ import { Transaction } from '../domain/transaction';
 import moment from 'moment';
 import { Gateway } from '../domain/gateway';
 import { AvailableTokens, Token } from '../domain/token';
-import { Address } from '../../../Shared/domain/address';
+import { Address } from '../../../Shared/domain/Address';
 import {
   TokensPriceHistory,
   BscScanAddressTransactionsResponse,
@@ -54,7 +54,9 @@ export class HttpGateway implements Gateway {
   }
 
   async getInputOf(transaction: Transaction): Promise<string> {
-    const transactionsInput: TransactionsInput = JSON.parse(localStorage.getItem('transactionsInput') ?? '{}');
+    const transactionsInput: TransactionsInput = JSON.parse(
+      localStorage.getItem('transactionsInput') ?? '{}'
+    );
     const { hash: transactionHash } = transaction;
 
     if (transactionsInput[transactionHash.toString()]) {
@@ -75,7 +77,9 @@ export class HttpGateway implements Gateway {
   // todo: here only the request, the logic should to a service
   async getTokenPriceAt(token: Token, timestamp: string): Promise<string> {
     if (!coingeckoIdOf[token.getSymbol()]) return '0';
-    const tokensPriceHistory: TokensPriceHistory = JSON.parse(localStorage.getItem('tokensPriceHistory') ?? '{}');
+    const tokensPriceHistory: TokensPriceHistory = JSON.parse(
+      localStorage.getItem('tokensPriceHistory') ?? '{}'
+    );
     const date = moment.unix(Number(timestamp)).format('DD-MM-YYYY');
 
     if (!tokensPriceHistory?.[token.getSymbol()]?.[date]) {

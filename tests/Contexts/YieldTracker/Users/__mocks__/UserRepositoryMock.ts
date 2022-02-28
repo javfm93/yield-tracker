@@ -1,4 +1,3 @@
-import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId';
 import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
 import { UserRepository } from '../../../../../src/Contexts/Yield-Tracker/Users/domain/UserRepository';
 import { UserId } from '../../../../../src/Contexts/Yield-Tracker/Users/domain/UserId';
@@ -8,15 +7,15 @@ export class UserRepositoryMock implements UserRepository {
   private mockSave = jest.fn();
   private mockSearch = jest.fn();
 
-  async save(course: User): Promise<void> {
-    this.mockSave(course);
+  async save(user: User): Promise<void> {
+    this.mockSave(user);
   }
 
-  expectLastSavedUserToBe(expectedCourse: User): void {
-    expect(this.mockSave).toBeCalledWith(expectedCourse);
+  expectLastSavedUserToBe(expectedUser: User): void {
+    expect(this.mockSave).toBeCalledWith(expectedUser);
   }
 
-  async search(id: CourseId): Promise<Nullable<User>> {
+  async search(id: UserId): Promise<Nullable<User>> {
     return this.mockSearch(id);
   }
 

@@ -1,7 +1,7 @@
 import { AvailableTokens, Token } from './token';
 import { AddressEntity } from '../../../Shared/domain/addressEntity';
 import { SmartContractType } from './smart-contract-type';
-import { Address } from '../../../Shared/domain/address';
+import { Address } from '../../../Shared/domain/Address';
 import { Transaction } from './transaction';
 
 export type TokensPrice = {
@@ -80,7 +80,9 @@ export class SmartContract extends AddressEntity<SmartContractProps> {
 
     if (props.type.isMinting()) {
       if (!props.minterAddress || !props.mintedToken) {
-        throw Error(`${suffixErrorMessage}: Given the type minterAddress and mintedToken should exist`);
+        throw Error(
+          `${suffixErrorMessage}: Given the type minterAddress and mintedToken should exist`
+        );
       }
     }
 

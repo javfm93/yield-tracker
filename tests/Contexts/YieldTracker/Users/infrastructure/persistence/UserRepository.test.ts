@@ -4,7 +4,9 @@ import container from '../../../../../../src/apps/yield-tracker/backend/dependen
 import { EnvironmentArranger } from '../../../../Shared/infrastructure/arranger/EnvironmentArranger';
 
 const repository: UserRepository = container.get('YieldTracker.users.UserRepository');
-const environmentArranger: Promise<EnvironmentArranger> = container.get('YieldTracker.EnvironmentArranger');
+const environmentArranger: Promise<EnvironmentArranger> = container.get(
+  'YieldTracker.EnvironmentArranger'
+);
 
 beforeEach(async () => {
   await (await environmentArranger).arrange();
@@ -15,7 +17,7 @@ afterAll(async () => {
   await (await environmentArranger).close();
 });
 
-describe('UserRepository', () => {
+describe('[infra] UserRepository', () => {
   describe('#save', () => {
     it('should save a user', async () => {
       const user = UserGenerator.random();

@@ -1,6 +1,8 @@
-export abstract class Address {
-  readonly value: string;
-  protected constructor(value: string) {
+import { ValueObject } from './ValueObject';
+
+export class Address extends ValueObject<Address> {
+  constructor(readonly value: string) {
+    super();
     if (value.length !== 42) {
       throw Error('[Domain:Address] Invalid address length');
     }

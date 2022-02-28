@@ -1,15 +1,13 @@
-import { Hash } from './hash';
+import { Hash } from './Hash';
 
-const isEntity = (v: any): v is HashEntity<any> => {
-  return v instanceof HashEntity;
-};
+const isEntity = (v: any): v is HashEntity<any> => v instanceof HashEntity;
 
 export abstract class HashEntity<T> {
   readonly hash: Hash;
-  public readonly props: T;
+  protected props: T;
 
-  constructor(hash: string, props: T) {
-    this.hash = Hash.create(hash);
+  protected constructor(hash: Hash, props: T) {
+    this.hash = hash;
     this.props = props;
   }
 

@@ -5,7 +5,7 @@ import { User } from '../domain/User';
 import { AvailableTokens, Token } from '../domain/token';
 import { AvailablePlatforms, SmartContract } from '../domain/smart-contract';
 import { SmartContractType, SmartContractTypes } from '../domain/smart-contract-type';
-import { Address } from '../../../Shared/domain/address';
+import { Address } from '../../../Shared/domain/Address';
 // @ts-ignore
 import Moralis from 'moralis';
 import {
@@ -34,11 +34,16 @@ enum tokensAddress {
 export class EthersBlockchainGateway implements BlockchainGateway {
   private provider: JsonRpcProvider;
 
-  private contractPerAddress: Record<AvailableSmartContractsAddress, (user: User) => Promise<SmartContract>> = {
+  private contractPerAddress: Record<
+    AvailableSmartContractsAddress,
+    (user: User) => Promise<SmartContract>
+  > = {
     [AvailableSmartContractsAddress.BUNNY]: (user: User) => this.getBunnyContractFor(user),
     [AvailableSmartContractsAddress.CAKE]: (user: User) => this.getCakeContractFor(user),
-    [AvailableSmartContractsAddress.BUNNY_BNB_FLIP_BOOST]: (user: User) => this.getBunnyBnbFlipBoostContractFor(user),
-    [AvailableSmartContractsAddress.ACRYPTOS_BTC_BUSD]: (user: User) => this.getAcryptosBtcBusdContractFor(user)
+    [AvailableSmartContractsAddress.BUNNY_BNB_FLIP_BOOST]: (user: User) =>
+      this.getBunnyBnbFlipBoostContractFor(user),
+    [AvailableSmartContractsAddress.ACRYPTOS_BTC_BUSD]: (user: User) =>
+      this.getAcryptosBtcBusdContractFor(user)
   };
 
   constructor() {
@@ -56,14 +61,20 @@ export class EthersBlockchainGateway implements BlockchainGateway {
     return Moralis.User.current().attributes.ethAddress;
   }
 
-  getSmartContractInformationForUser(address: AvailableSmartContractsAddress, user: User): Promise<SmartContract> {
+  getSmartContractInformationForUser(
+    address: AvailableSmartContractsAddress,
+    user: User
+  ): Promise<SmartContract> {
     return this.contractPerAddress[address](user);
   }
 
   private async getBunnyContractFor(user: User): Promise<SmartContract> {
     const stakedToken = AvailableTokens.BUNNY;
     const rewardedToken = AvailableTokens.WBNB;
-    const smartContract = Bunny__factory.connect(AvailableSmartContractsAddress.BUNNY, this.provider);
+    const smartContract = Bunny__factory.connect(
+      AvailableSmartContractsAddress.BUNNY,
+      this.provider
+    );
     const apy = await smartContract.apy();
     const tvl = await smartContract.tvl();
     const userBalance = await smartContract.balanceOf(user.address.toString());
@@ -95,7 +106,9 @@ export class EthersBlockchainGateway implements BlockchainGateway {
     const tvl = '0';
     const userBalance = await smartContract.balanceOf(user.address.toString());
     const userProfit = await smartContract.earned(user.address.toString());
-    const smartContractType = SmartContractType.create(SmartContractTypes.FARM_DIFFERENT_TOKEN_AND_MINT);
+    const smartContractType = SmartContractType.create(
+      SmartContractTypes.FARM_DIFFERENT_TOKEN_AND_MINT
+    );
     const minterAddress = Address.create(await smartContract.minter());
     return SmartContract.create(AvailableSmartContractsAddress.BUNNY_BNB_FLIP_BOOST, {
       platform: AvailablePlatforms.BUNNY,
@@ -120,7 +133,9 @@ export class EthersBlockchainGateway implements BlockchainGateway {
     const tvl = '0';
     const userBalance = await smartContract.balanceOf(user.address.toString());
     const userProfit = await smartContract.earned(user.address.toString());
-    const smartContractType = SmartContractType.create(SmartContractTypes.AUTO_COMPOUND_SAME_TOKEN_AND_MINT);
+    const smartContractType = SmartContractType.create(
+      SmartContractTypes.AUTO_COMPOUND_SAME_TOKEN_AND_MINT
+    );
     const minterAddress = Address.create(await smartContract.minter());
     console.log(minterAddress);
     return SmartContract.create(AvailableSmartContractsAddress.CAKE, {
@@ -148,7 +163,9 @@ export class EthersBlockchainGateway implements BlockchainGateway {
     const tvl = '0';
     const userBalance = await smartContract.calculateWeight(lpAddress, user.address.toString());
     const userProfit = await smartContract.pendingSushi(lpAddress, user.address.toString());
-    const smartContractType = SmartContractType.create(SmartContractTypes.AUTO_COMPOUND_SAME_TOKEN_AND_MINT);
+    const smartContractType = SmartContractType.create(
+      SmartContractTypes.AUTO_COMPOUND_SAME_TOKEN_AND_MINT
+    );
     const minterAddress = Address.create(minter);
     return SmartContract.create(AvailableSmartContractsAddress.ACRYPTOS_BTC_BUSD, {
       platform: AvailablePlatforms.ACRYPTOS,

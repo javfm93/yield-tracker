@@ -1,7 +1,7 @@
 import { Token } from './token';
 import { Address } from '../../../Shared/domain/Address';
 import { HashEntity } from '../../../Shared/domain/HashEntity';
-import { TransactionHash } from '../../UserTransactions/domain/TransactionHash';
+import { TransactionHash } from './TransactionHash';
 
 export enum AccumulatedTypes {
   stakedToken = 'stakedToken',
@@ -30,6 +30,7 @@ export interface DefaultTransactionProps {
 
 export interface TransactionProps extends CreateTransactionProps, DefaultTransactionProps {}
 
+// todo: this should be an aggregate root
 export class Transaction extends HashEntity<TransactionProps> {
   private constructor(hash: TransactionHash, props: TransactionProps) {
     super(hash, props);
