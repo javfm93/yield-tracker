@@ -1,4 +1,4 @@
-import { AddressEntity } from '../../../Shared/domain/addressEntity';
+import { AddressEntity } from './addressEntity';
 import { TokenAddress } from './TokenAddress';
 
 export interface PriceHistory {

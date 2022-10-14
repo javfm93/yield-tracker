@@ -4,7 +4,10 @@ import { UserRepository } from '../../domain/UserRepository';
 import { UserId } from '../../domain/UserId';
 import { User, UserProps } from '../../domain/User';
 
-export class MongoUserRepository extends MongoRepository<User, UserProps> implements UserRepository {
+export class MongoUserRepository
+  extends MongoRepository<User, UserProps>
+  implements UserRepository
+{
   public save(user: User): Promise<void> {
     return this.persist(user.id.toString(), user);
   }
@@ -17,6 +20,6 @@ export class MongoUserRepository extends MongoRepository<User, UserProps> implem
   }
 
   protected moduleName(): string {
-    return 'courses';
+    return 'users';
   }
 }

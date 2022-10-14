@@ -4,8 +4,7 @@ import { User } from '../../domain/User';
 import { EventBus } from '../../../../Shared/domain/EventBus';
 import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
 import { Address } from '../../../../Shared/domain/Address';
-import { TransactionsService } from '../../../UserTransactions/domain/TransactionsService';
-import { UserTransactions } from '../../domain/UserTransactions';
+import { TransactionsService } from '../../../../Shared/domain/TransactionsService';
 
 interface CreateUserArgs {
   id: Uuid;
@@ -22,10 +21,7 @@ export class CreateUser implements UseCase<CreateUserArgs, void> {
 
   async execute({ id, address }: CreateUserArgs): Promise<void> {
     const userTransactions = await this.transactionsService.getTransactionsOf(address);
-    const user = User.create(id, {
-      address,
-      transactions: UserTransactions.create(userTransactions)
-    });
+    const user = User.create(id, { address, transactions: userTransactions });
     await this.userRepository.save(user);
     await this.eventBus.publish(user.pullDomainEvents());
   }

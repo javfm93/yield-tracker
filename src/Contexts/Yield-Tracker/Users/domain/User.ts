@@ -1,7 +1,7 @@
-import { Address } from '../../../Shared/domain/Address';
+// import { Address } from '../../../Shared/domain/Address';
 import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
 import { UserCreatedDomainEvent } from './UserCreatedDomainEvent';
-import { Transaction } from '../../Others/domain/transaction';
+// import { Transaction } from '../../Others/domain/transaction';
 import { UserAddress } from './UserAddress';
 import { UserId } from './UserId';
 import { UserTransactions } from './UserTransactions';
@@ -48,14 +48,7 @@ export class User extends AggregateRoot<UserProps> {
     });
   }
 
-  transactionsWith(smartContractAddresses: Array<Address>): Array<Transaction> {
-    const transactions = smartContractAddresses.map(smartContractAddress =>
-      this.props.transactions.filterBy(
-        tokenTx =>
-          tokenTx.isDepositOf(smartContractAddress) || tokenTx.isWithdrawOf(smartContractAddress)
-      )
-    );
-    // return transactions.flat();
-    return transactions[0];
-  }
+  // transactionsWith(smartContractAddresses: Array<Address>): Array<Transaction> {
+  //   return this.props.transactions.transactionsWith(smartContractAddresses);
+  // }
 }

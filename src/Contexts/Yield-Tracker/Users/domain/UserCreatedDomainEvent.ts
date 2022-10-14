@@ -18,9 +18,9 @@ export class UserCreatedDomainEvent extends DomainEvent {
     address
   }: {
     id: string;
+    address: string;
     eventId?: string;
     occurredOn?: Date;
-    address: string;
   }) {
     super(UserCreatedDomainEvent.EVENT_NAME, id, eventId, occurredOn);
     this.address = address;

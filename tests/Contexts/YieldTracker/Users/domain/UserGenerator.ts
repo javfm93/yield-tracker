@@ -5,7 +5,7 @@ import { UserId } from '../../../../../src/Contexts/Yield-Tracker/Users/domain/U
 import { CreateUserCommand } from '../../../../../src/Contexts/Yield-Tracker/Users/application/Create/CreateUserCommand';
 import { UserIdGenerator } from './UserIdGenerator';
 import { UserTransactions } from '../../../../../src/Contexts/Yield-Tracker/Users/domain/UserTransactions';
-import { Transaction } from '../../../../../src/Contexts/Yield-Tracker/UserTransactions/domain/Transaction';
+import { Transaction } from '../../../../../src/Contexts/Yield-Tracker/UserSmartContracts/domain/Transaction';
 import { TransactionGenerator } from './TransactionGenerator';
 
 export class UserGenerator {

@@ -1,7 +1,7 @@
 import { Token } from './token';
 import { Address } from '../../../Shared/domain/Address';
 import { HashEntity } from '../../../Shared/domain/HashEntity';
-import { TransactionHash } from '../../UserTransactions/domain/TransactionHash';
+import { TransactionHash } from '../../UserSmartContracts/domain/TransactionHash';
 
 export enum AccumulatedTypes {
   stakedToken = 'stakedToken',

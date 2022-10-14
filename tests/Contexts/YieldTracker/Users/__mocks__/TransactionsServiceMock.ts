@@ -1,5 +1,5 @@
-import { TransactionsService } from '../../../../../src/Contexts/Yield-Tracker/UserTransactions/domain/TransactionsService';
-import { Transaction } from '../../../../../src/Contexts/Yield-Tracker/UserTransactions/domain/Transaction';
+import { TransactionsService } from '../../../../../src/Contexts/Yield-Tracker/UserSmartContracts/domain/TransactionsService';
+import { Transaction } from '../../../../../src/Contexts/Yield-Tracker/UserSmartContracts/domain/Transaction';
 import { Address } from '../../../../../src/Contexts/Shared/domain/Address';
 
 export class TransactionsServiceMock implements TransactionsService {

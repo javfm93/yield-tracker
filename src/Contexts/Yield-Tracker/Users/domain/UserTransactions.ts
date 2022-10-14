@@ -1,13 +1,12 @@
-import { Transaction } from '../../UserTransactions/domain/Transaction';
+import { Transaction } from '../../../Shared/domain/Transaction';
+import { Transactions } from '../../../Shared/domain/Transactions';
 
-export class UserTransactions {
-  private constructor(readonly value: Array<Transaction>) {}
+export class UserTransactions extends Transactions {
+  private constructor(readonly value: Array<Transaction>) {
+    super(value);
+  }
 
   public static create(transactions: Array<Transaction>) {
     return new UserTransactions(transactions);
-  }
-
-  public filterBy(criteria: (transaction: Transaction) => boolean) {
-    return this.value.filter(criteria);
   }
 }

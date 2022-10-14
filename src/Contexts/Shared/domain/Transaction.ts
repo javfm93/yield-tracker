@@ -1,6 +1,6 @@
 import { Token } from './token';
-import { Address } from '../../../Shared/domain/Address';
-import { HashEntity } from '../../../Shared/domain/HashEntity';
+import { Address } from './Address';
+import { HashEntity } from './HashEntity';
 import { TransactionHash } from './TransactionHash';
 
 export enum AccumulatedTypes {

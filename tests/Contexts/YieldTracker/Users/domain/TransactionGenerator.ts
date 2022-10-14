@@ -6,7 +6,7 @@ import * as faker from 'faker';
 import { HashGenerator } from '../../../Shared/domain/HashGenerator';
 import { AddressGenerator } from '../../../Shared/domain/AddressGenerator';
 import { TokenGenerator } from './TokenGenerator';
-import { TransactionHash } from '../../../../../src/Contexts/Yield-Tracker/UserTransactions/domain/TransactionHash';
+import { TransactionHash } from '../../../../../src/Contexts/Yield-Tracker/UserSmartContracts/domain/TransactionHash';
 
 export class TransactionGenerator {
   static create(hash: TransactionHash, props: CreateTransactionProps): Transaction {

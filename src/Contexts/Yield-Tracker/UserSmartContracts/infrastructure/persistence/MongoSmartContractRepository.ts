@@ -3,9 +3,10 @@ import { MongoRepository } from '../../../../Shared/infrastructure/persistence/m
 import { UserTransactionsRepository } from '../../domain/UserTransactionsRepository';
 import { TransactionHash } from '../../domain/TransactionHash';
 import { User, UserProps } from '../../domain/User';
+import { SmartContract } from '../../../Others/domain/smart-contract';
 
-export class MongoUserRepository
-  extends MongoRepository<User, UserProps>
+export class MongoSmartContractRepository
+  extends MongoRepository<SmartContract, UserProps>
   implements UserTransactionsRepository
 {
   public save(user: User): Promise<void> {

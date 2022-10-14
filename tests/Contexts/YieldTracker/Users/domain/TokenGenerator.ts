@@ -3,8 +3,8 @@ import {
   AvailableTokens,
   Token,
   TokenProps
-} from '../../../../../src/Contexts/Yield-Tracker/UserTransactions/domain/Token';
-import { TokenAddress } from '../../../../../src/Contexts/Yield-Tracker/UserTransactions/domain/TokenAddress';
+} from '../../../../../src/Contexts/Yield-Tracker/UserSmartContracts/domain/Token';
+import { TokenAddress } from '../../../../../src/Contexts/Yield-Tracker/UserSmartContracts/domain/TokenAddress';
 
 export class TokenGenerator {
   static create(hash: TokenAddress, props: TokenProps): Token {

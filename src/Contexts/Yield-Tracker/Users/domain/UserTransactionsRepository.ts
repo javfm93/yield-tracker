@@ -1,6 +1,6 @@
-import { TransactionHash } from './TransactionHash';
 import { Nullable } from '../../../Shared/domain/Nullable';
-import { Transaction } from './Transaction';
+import { Transaction } from '../../../Shared/domain/Transaction';
+import { TransactionHash } from '../../../Shared/domain/TransactionHash';
 
 export interface UserTransactionsRepository {
   save(userTransactions: Array<Transaction>): Promise<void>;

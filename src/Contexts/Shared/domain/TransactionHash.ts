@@ -1,4 +1,4 @@
-import { Hash } from '../../../Shared/domain/Hash';
+import { Hash } from './Hash';
 
 export class TransactionHash extends Hash {
   private constructor(value: string) {
